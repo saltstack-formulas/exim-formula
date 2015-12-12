@@ -9,6 +9,7 @@ exim_install_packages:
       - {{ pkg }}
       {% endfor %}  
 
+{% set use_split_config = salt['pillar.get']('exim:config:use_split_config', 'true') %} 
 {% set configtype = salt['pillar.get']('exim:config:configtype', 'satellite') %} 
 {% set hide_mailname = salt['pillar.get']('exim:config:hide_mailname', 'true') %} 
 {% set ue4c_keepcomments = salt['pillar.get']('exim:config:ue4c_keepcomments', 'true') %} 
@@ -24,7 +25,7 @@ exim_install_packages:
 {{ map.config_dir }}/{{ map.config_file }}:
   file.managed:
     - contents: |
-        dc_use_split_config='true'
+        dc_use_split_config='{{ use_split_config }}'
         dc_eximconfig_configtype='{{ configtype }}'
         dc_hide_mailname='{{ hide_mailname }}'
         ue4c_keepcomments='{{ ue4c_keepcomments }}'
