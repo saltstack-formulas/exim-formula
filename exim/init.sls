@@ -24,6 +24,7 @@ exim_install_packages:
 {{ map.config_dir }}/{{ map.config_file }}:
   file.managed:
     - contents: |
+        dc_use_split_config='true'
         dc_eximconfig_configtype='{{ configtype }}'
         dc_hide_mailname='{{ hide_mailname }}'
         ue4c_keepcomments='{{ ue4c_keepcomments }}'
@@ -39,8 +40,8 @@ exim_install_packages:
       - service: {{ map.service }}
 
 {% for dir in map.sub_dirs %}
-  {% for file in salt['pillar.get']('exim:' + dir, {}) %}
-{{ map.config_dir }}/{{ dir }}/{{ file }}:
+  {% for file in salt['pillar.get']('exim:files:' + dir, {}) %}
+{{ map.config_dir }}/conf.d/{{ dir }}/{{ file }}:
   file.managed:
     - source: salt://exim/{{ file }}
     - watch_in:
