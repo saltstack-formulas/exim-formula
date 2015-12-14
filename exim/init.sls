@@ -50,4 +50,4 @@ exim_install_packages:
 
 exim_service:
   service.running:
-    - name: exim4
+    - name: {{ map.service }}
