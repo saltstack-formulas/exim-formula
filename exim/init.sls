@@ -9,7 +9,7 @@ exim_install_packages:
       - {{ pkg }}
       {% endfor %}  
 
-{% set use_split_config = salt['pillar.get']('exim:config:use_split_config', 'false') %} 
+{% set use_split_config = salt['pillar.get']('exim:config:use_split_config', 'true') %} 
 {% set configtype = salt['pillar.get']('exim:config:configtype', 'satellite') %} 
 {% set hide_mailname = salt['pillar.get']('exim:config:hide_mailname', 'true') %} 
 {% set ue4c_keepcomments = salt['pillar.get']('exim:config:ue4c_keepcomments', 'true') %} 
@@ -59,10 +59,4 @@ exim_service:
   service.running:
     - name: {{ map.service }}
 
-update_config:
-  cmd.run:
-    - name: 'update-exim4.conf'
-    - onchanges:
-      - file:  {{ map.config_dir }}/{{ map.config_file }}
-    - watch_in:
-      - service: {{ map.service }}
+
