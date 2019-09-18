@@ -1,6 +1,7 @@
+---
 exim:
   config:
-    # See http://pkg-exim4.alioth.debian.org/README/update-exim4.conf.8.html for details.
+    # See http://pkg-exim4.alioth.debian.org/README/update-exim4.conf.8.html for details
     configtype: 'satellite'
     hide_mailname: 'true'
     ue4c_keepcomments: 'true'
@@ -33,10 +34,10 @@ exim:
     acl:
       '00_exim4-config_header': |
         begin acl
-    router:
-    transport:
+    router: null
+    transport: null
     retry:
       'file3': |
         # some more config
-    rewrite:
-    auth:
+    rewrite: null
+    auth: null
