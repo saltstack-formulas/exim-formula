@@ -13,17 +13,30 @@ exim:
     relay_nets: ''
     smarthost: ''
   files:
-    # Name all files which should be put under the corresponding
-    # split config directory
-    # Source files must be placed in an exim directory under file_roots
-    # e.g. /srv/salt/files/exim/
     main:
-      - file1
-      - file 2  
+      '01_exim4-config_listmacrosdefs': |
+        exim_path = /usr/sbin/exim4
+        # Macro defining the main configuration directory.
+        # We do not use absolute paths.
+        .ifndef CONFDIR
+        CONFDIR = /etc/exim4
+        .endif
+
+      '90_exim4-config_log_selector': |
+        # uncomment this for debugging
+        # MAIN_LOG_SELECTOR == MAIN_LOG_SELECTOR +all -subject -arguments
+
+        .ifdef MAIN_LOG_SELECTOR
+        log_selector = MAIN_LOG_SELECTOR
+        .endif
+
     acl:
+      '00_exim4-config_header': |
+        begin acl
     router:
     transport:
     retry:
-      - file3
+      'file3': |
+        # some more config
     rewrite:
     auth:
