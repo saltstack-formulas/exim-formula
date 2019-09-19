@@ -1,0 +1,9 @@
+name: exim
+os: Debian, Ubuntu
+os_family: Debian
+version: 0.1.0
+release: 1
+minimum_version: 2017.7
+summary: Exim formula
+description: Formula to use to install and configure exim
+top_level_dir: exim
