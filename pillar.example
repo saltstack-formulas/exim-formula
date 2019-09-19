@@ -1,7 +1,7 @@
 ---
 exim:
   config:
-    # See http://pkg-exim4.alioth.debian.org/README/update-exim4.conf.8.html for details
+    # See https://manpages.debian.org/buster/exim4-config/update-exim4.conf.8.en.html for details
     configtype: 'satellite'
     hide_mailname: 'true'
     ue4c_keepcomments: 'true'
