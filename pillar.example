@@ -1,6 +1,7 @@
 ---
 exim:
   config:
+    # yamllint disable-line rule:line-length
     # See https://manpages.debian.org/buster/exim4-config/update-exim4.conf.8.en.html for details
     configtype: 'satellite'
     hide_mailname: 'true'
