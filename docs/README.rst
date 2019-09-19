@@ -14,7 +14,7 @@ exim-formula
    :scale: 100%
    :target: https://github.com/semantic-release/semantic-release
 
-``exim`` scans log files for malicious activity and executes actions based on what it finds.
+ Formula to install and configure the exim mail server.
 
 
 .. contents:: **Table of Contents**
