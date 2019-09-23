@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.1](https://github.com/saltstack-formulas/exim-formula/compare/v0.2.0...v0.2.1) (2019-09-23)
+
+
+### Code Refactoring
+
+* **states:** split exim metastate in .package/.config/.service ([a947ba9](https://github.com/saltstack-formulas/exim-formula/commit/a947ba9))
+
+
+### Continuous Integration
+
+* **kitchen:** change `log_level` to `debug` instead of `info` ([56d9573](https://github.com/saltstack-formulas/exim-formula/commit/56d9573))
+
 # [0.2.0](https://github.com/saltstack-formulas/exim-formula/compare/v0.1.0...v0.2.0) (2019-09-19)
 
 
