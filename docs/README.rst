@@ -14,8 +14,7 @@ exim-formula
    :scale: 100%
    :target: https://github.com/semantic-release/semantic-release
 
- Formula to install and configure the exim mail server.
-
+Formula to install and configure the exim mail server.
 
 .. contents:: **Table of Contents**
 
@@ -46,11 +45,21 @@ Available states
 .. contents::
    :local:
 
-
 ``exim``
 ^^^^^^^^
-
 Install the ``exim`` package and enable the service.
+
+``exim.package``
+^^^^^^^^^^^^^^^^
+Installs the exim package.
+
+``exim.config``
+^^^^^^^^^^^^^^^
+This state manages the file ``update-exim4.conf.conf`` under ``/etc/exim4`` (template found in "exim/files"). The configuration is populated by values in "exim/map.jinja" based on the package's default values (and RedHat, Debian, Suse and Arch family distribution specific values), which can then be overridden by values of the same name in pillar.
+
+``exim.service``
+^^^^^^^^^^^^^^^^
+Manages the startup and running state of the exim service.
 
 Testing
 -------
