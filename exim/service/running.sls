@@ -4,14 +4,14 @@
 {#- Get the `tplroot` from `tpldir` #}
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- set sls_config_file = tplroot ~ '.config.file' %}
-{%- from tplroot ~ "/map.jinja" import map with context %}
+{%- from tplroot ~ "/map.jinja" import exim with context %}
 
 include:
   - {{ sls_config_file }}
 
 exim/service/running:
   service.running:
-    - name: {{ map.service }}
+    - name: {{ exim.service }}
     - enable: true
     - require:
       - sls: {{ sls_config_file }}
