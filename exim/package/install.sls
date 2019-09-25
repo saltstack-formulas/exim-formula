@@ -3,8 +3,8 @@
 
 {#- Get the `tplroot` from `tpldir` #}
 {%- set tplroot = tpldir.split('/')[0] %}
-{%- from tplroot ~ "/map.jinja" import map with context %}
+{%- from tplroot ~ "/map.jinja" import exim with context %}
 
 exim/package/install:
   pkg.installed:
-    - pkgs: {{ map.pkgs | json }}
+    - pkgs: {{ exim.pkgs | json }}

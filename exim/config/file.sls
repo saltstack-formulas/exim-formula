@@ -4,7 +4,7 @@
 {#- Get the `tplroot` from `tpldir` #}
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- set sls_package_install = tplroot ~ '.package.install' %}
-{%- from tplroot ~ "/map.jinja" import map with context %}
+{%- from tplroot ~ "/map.jinja" import exim with context %}
 
 {% set use_split_config  = salt['pillar.get']('exim:config:use_split_config', 'true') %}
 {% set configtype        = salt['pillar.get']('exim:config:configtype', 'satellite') %}
@@ -20,7 +20,7 @@
 {% set smarthost         = salt['pillar.get']('exim:config:smarthost', '') %}
 {% set cfilemode         = salt['pillar.get']('exim:config:cfilemode', '644') %}
 
-{{ map.config_dir }}/{{ map.config_file }}:
+{{ exim.config_dir }}/{{ exim.config_file }}:
   file.managed:
     - contents: |
         dc_eximconfig_configtype='{{ configtype }}'
@@ -38,9 +38,9 @@
         CFILEMODE='{{ cfilemode }}'
 
 {% if salt['pillar.get']('exim:files') %}
-{% for dir in map.sub_dirs %}
+{% for dir in exim.sub_dirs %}
   {% for file in salt['pillar.get']('exim:files:' + dir, {}) %}
-{{ map.config_dir }}/conf.d/{{ dir }}/{{ file }}:
+{{ exim.config_dir }}/conf.d/{{ dir }}/{{ file }}:
   file.managed:
     - contents_pillar: exim:files:{{ dir }}:{{ file }}
   {% endfor %}
