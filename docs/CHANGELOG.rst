@@ -2,6 +2,15 @@
 Changelog
 =========
 
+`0.3.0 <https://github.com/saltstack-formulas/exim-formula/compare/v0.2.1...v0.3.0>`_ (2019-09-25)
+------------------------------------------------------------------------------------------------------
+
+Features
+^^^^^^^^
+
+
+* **map:** sync map.jinja with template-formula (\ `5ddd1c9 <https://github.com/saltstack-formulas/exim-formula/commit/5ddd1c9>`_\ )
+
 `0.2.1 <https://github.com/saltstack-formulas/exim-formula/compare/v0.2.0...v0.2.1>`_ (2019-09-23)
 ------------------------------------------------------------------------------------------------------
 
