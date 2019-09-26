@@ -5,3 +5,6 @@ exim:
   config:
     configtype: 'satellite'
     hide_mailname: 'false'
+  mailname: foo.bar.baz
+  aliases:
+    root: root@bar.baz
