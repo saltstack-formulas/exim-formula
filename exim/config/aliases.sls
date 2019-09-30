@@ -9,6 +9,9 @@
 {%- set aliases         = exim.aliases | default({}) %}
 {%- set virtual_aliases = exim.virtual_aliases | default({}) %}
 
+include:
+  - {{ sls_package_install }}
+
 {%- for name, targets in aliases | dictsort %}
 exim/alias/{{ name }}:
 {%- if not targets %}
@@ -25,6 +28,8 @@ exim/alias/{{ name }}:
   {%- else %}
         {{ targets }}
   {%- endif %}
+    - require:
+      - sls: {{ sls_package_install }}
 {%- endif %}
 {%- endfor %}
 
@@ -43,4 +48,6 @@ exim/virtual-aliases/{{ domain }}:
     - context:
         aliases: {{ aliases|json }}
         domain: {{ domain }}
+    - require:
+      - sls: {{ sls_package_install }}
 {%- endfor %}

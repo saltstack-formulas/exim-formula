@@ -8,7 +8,12 @@
 
 {%- set mailname = exim.mailname | default(salt['grains.get']('fqdn')) %}
 
+include:
+  - {{ sls_package_install }}
+
 exim/config/mailname:
   file.managed:
     - name: {{ exim.mailname_file }}
     - contents: {{ mailname }}
+    - require:
+      - sls: {{ sls_package_install }}

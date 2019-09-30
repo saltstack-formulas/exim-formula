@@ -21,6 +21,9 @@
 {%- set smarthost         = exim_config.smarthost | default('') %}
 {%- set cfilemode         = exim_config.cfilemode | default('644') %}
 
+include:
+  - {{ sls_package_install }}
+
 {{ exim.config_dir }}/{{ exim.config_file }}:
   file.managed:
     - contents: |
@@ -37,6 +40,8 @@
         dc_readhost='{{ readhost }}'
         dc_smarthost='{{ smarthost }}'
         CFILEMODE='{{ cfilemode }}'
+    - require:
+      - sls: {{ sls_package_install }}
 
 {%- if salt['pillar.get']('exim:files') %}
 {%- for dir in exim.sub_dirs %}
@@ -44,6 +49,8 @@
 {{ exim.config_dir }}/conf.d/{{ dir }}/{{ file }}:
   file.managed:
     - contents_pillar: exim:files:{{ dir }}:{{ file }}
+    - require:
+      - sls: {{ sls_package_install }}
   {%- endfor %}
 {%- endfor %}
 {%- endif %}
