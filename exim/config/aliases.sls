@@ -30,6 +30,8 @@ exim/alias/{{ name }}:
   {%- endif %}
     - require:
       - sls: {{ sls_package_install }}
+    - listen_in:
+      - cmd: exim/newaliases
 {%- endif %}
 {%- endfor %}
 
@@ -50,4 +52,10 @@ exim/virtual-aliases/{{ domain }}:
         domain: {{ domain }}
     - require:
       - sls: {{ sls_package_install }}
+    - listen_in:
+      - cmd: exim/newaliases
 {%- endfor %}
+
+exim/newaliases:
+  cmd.wait:
+    - name: newaliases
