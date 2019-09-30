@@ -6,9 +6,10 @@
 {%- set sls_package_install = tplroot ~ '.package.install' %}
 {%- from tplroot ~ "/map.jinja" import exim with context %}
 
-{%- set virtual_aliases = salt['pillar.get']('exim:virtual_aliases', {}) %}
+{%- set aliases         = exim.aliases | default({}) %}
+{%- set virtual_aliases = exim.virtual_aliases | default({}) %}
 
-{%- for name, targets in salt['pillar.get']('exim:aliases', {}) | dictsort %}
+{%- for name, targets in aliases | dictsort %}
 exim/alias/{{ name }}:
 {%- if not targets %}
   alias.absent:

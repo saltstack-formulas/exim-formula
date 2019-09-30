@@ -6,7 +6,7 @@
 {%- set sls_package_install = tplroot ~ '.package.install' %}
 {%- from tplroot ~ "/map.jinja" import exim with context %}
 
-{%- set mailname = salt['pillar.get']('exim:mailname', salt['grains.get']('fqdn')) %}
+{%- set mailname = exim.mailname | default(salt['grains.get']('fqdn')) %}
 
 exim/config/mailname:
   file.managed:
