@@ -6,13 +6,10 @@
 {%- set sls_package_install = tplroot ~ '.package.install' %}
 {%- from tplroot ~ "/map.jinja" import exim with context %}
 
-{%- set aliases         = exim.aliases | default({}) %}
-{%- set virtual_aliases = exim.virtual_aliases | default({}) %}
-
 include:
   - {{ sls_package_install }}
 
-{%- for name, targets in aliases | dictsort %}
+{%- for name, targets in exim.aliases | dictsort %}
 exim/alias/{{ name }}:
 {%- if not targets %}
   alias.absent:
@@ -35,13 +32,13 @@ exim/alias/{{ name }}:
 {%- endif %}
 {%- endfor %}
 
-{%- if virtual_aliases %}
+{%- if exim.virtual_aliases %}
 exim/virtual-aliases/dir:
   file.directory:
     - name: {{ exim.virtual_aliases_dir }}
 {%- endif %}
 
-{%- for domain, aliases in virtual_aliases | dictsort %}
+{%- for domain, aliases in exim.virtual_aliases | dictsort %}
 exim/virtual-aliases/{{ domain }}:
   file.managed:
     - name: {{ exim.virtual_aliases_dir }}/{{ domain }}

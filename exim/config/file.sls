@@ -6,40 +6,25 @@
 {%- set sls_package_install = tplroot ~ '.package.install' %}
 {%- from tplroot ~ "/map.jinja" import exim with context %}
 
-{%- set exim_config       = exim.config | default({}) %}
-{%- set use_split_config  = exim_config.use_split_config | default('true') %}
-{%- set configtype        = exim_config.configtype | default('satellite') %}
-{%- set hide_mailname     = exim_config.hide_mailname | default('true') %}
-{%- set ue4c_keepcomments = exim_config.ue4c_keepcomments | default('true') %}
-{%- set localdelivery     = exim_config.localdelivery | default('mail_spool') %}
-{%- set local_interfaces  = exim_config.local_interfaces | default('') %}
-{%- set minimaldns        = exim_config.minimaldns | default('false') %}
-{%- set other_hostnames   = exim_config.other_hostnames | default('') %}
-{%- set readhost          = exim_config.readhost | default('') %}
-{%- set relay_domains     = exim_config.relay_domains | default('') %}
-{%- set relay_nets        = exim_config.relay_nets | default('') %}
-{%- set smarthost         = exim_config.smarthost | default('') %}
-{%- set cfilemode         = exim_config.cfilemode | default('644') %}
-
 include:
   - {{ sls_package_install }}
 
 {{ exim.config_dir }}/{{ exim.config_file }}:
   file.managed:
     - contents: |
-        dc_eximconfig_configtype='{{ configtype }}'
-        dc_other_hostnames='{{ other_hostnames }}'
-        dc_local_interfaces='{{ local_interfaces }}'
-        dc_relay_domains='{{ relay_domains }}'
-        dc_relay_nets='{{ relay_nets }}'
-        dc_use_split_config='{{ use_split_config }}'
-        dc_hide_mailname='{{ hide_mailname }}'
-        ue4c_keepcomments='{{ ue4c_keepcomments }}'
-        dc_localdelivery='{{ localdelivery }}'
-        dc_minimaldns='{{ minimaldns }}'
-        dc_readhost='{{ readhost }}'
-        dc_smarthost='{{ smarthost }}'
-        CFILEMODE='{{ cfilemode }}'
+        dc_eximconfig_configtype='{{ exim.config.configtype }}'
+        dc_other_hostnames='{{ exim.config.other_hostnames }}'
+        dc_local_interfaces='{{ exim.config.local_interfaces }}'
+        dc_relay_domains='{{ exim.config.relay_domains }}'
+        dc_relay_nets='{{ exim.config.relay_nets }}'
+        dc_use_split_config='{{ exim.config.use_split_config }}'
+        dc_hide_mailname='{{ exim.config.hide_mailname }}'
+        ue4c_keepcomments='{{ exim.config.ue4c_keepcomments }}'
+        dc_localdelivery='{{ exim.config.localdelivery }}'
+        dc_minimaldns='{{ exim.config.minimaldns }}'
+        dc_readhost='{{ exim.config.readhost }}'
+        dc_smarthost='{{ exim.config.smarthost }}'
+        CFILEMODE='{{ exim.config.cfilemode }}'
     - require:
       - sls: {{ sls_package_install }}
 

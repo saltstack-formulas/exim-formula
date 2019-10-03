@@ -1,4 +1,30 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
 ---
-exim: {}
+exim:
+  mailname: null
+  aliases: {}
+  virtual_aliases: {}
+  files: {}
+  config:
+    configtype: 'satellite'
+    other_hostnames: ''
+    local_interfaces: ''
+    relay_domains: ''
+    relay_nets: ''
+    use_split_config: 'true'
+    hide_mailname: 'true'
+    ue4c_keepcomments: 'true'
+    localdelivery: 'mail_spool'
+    minimaldns: 'false'
+    readhost: ''
+    smarthost: ''
+    cfilemode: '644'
+  sub_dirs:
+    - main
+    - acl
+    - router
+    - transport
+    - retry
+    - rewrite
+    - auth
