@@ -5,28 +5,23 @@
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- set sls_package_install = tplroot ~ '.package.install' %}
 {%- from tplroot ~ "/map.jinja" import exim with context %}
+{%- from tplroot ~ "/libtofs.jinja" import files_switch with context %}
 
 include:
   - {{ sls_package_install }}
 
-{{ exim.config_dir }}/{{ exim.config_file }}:
+exim/config/install:
   file.managed:
-    - contents: |
-        dc_eximconfig_configtype='{{ exim.config.configtype }}'
-        dc_other_hostnames='{{ exim.config.other_hostnames }}'
-        dc_local_interfaces='{{ exim.config.local_interfaces }}'
-        dc_relay_domains='{{ exim.config.relay_domains }}'
-        dc_relay_nets='{{ exim.config.relay_nets }}'
-        dc_use_split_config='{{ exim.config.use_split_config }}'
-        dc_hide_mailname='{{ exim.config.hide_mailname }}'
-        ue4c_keepcomments='{{ exim.config.ue4c_keepcomments }}'
-        dc_localdelivery='{{ exim.config.localdelivery }}'
-        dc_minimaldns='{{ exim.config.minimaldns }}'
-        dc_readhost='{{ exim.config.readhost }}'
-        dc_smarthost='{{ exim.config.smarthost }}'
-        CFILEMODE='{{ exim.config.cfilemode }}'
+    - name: {{ exim.config_dir }}/{{ exim.config_file }}
+    - source: {{ files_switch(['update-exim4.conf.conf'],
+                              lookup='exim/config/install'
+                 )
+              }}
+    - template: jinja
     - require:
       - sls: {{ sls_package_install }}
+    - context:
+        exim: {{ exim.config | json }}
 
 {%- if salt['pillar.get']('exim:files') %}
 {%- for dir in exim.sub_dirs %}
