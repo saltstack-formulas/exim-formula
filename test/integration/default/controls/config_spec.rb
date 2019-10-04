@@ -6,6 +6,8 @@ control 'Exim configuration' do
     its('content') { should include "dc_eximconfig_configtype='satellite'" }
 
     # Custom config
+    its('content') { should include "dc_other_hostnames='foo.bar.baz ; bar.baz.foo'" }
+    its('content') { should include "dc_local_interfaces='127.0.0.1'" }
     its('content') { should include "dc_hide_mailname='false'" }
     its('content') { should include "dc_use_split_config='false'" }
   end
