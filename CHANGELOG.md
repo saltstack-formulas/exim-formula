@@ -1,5 +1,35 @@
 # Changelog
 
+# [0.4.0](https://github.com/saltstack-formulas/exim-formula/compare/v0.3.0...v0.4.0) (2019-10-04)
+
+
+### Bug Fixes
+
+* **states:** add missing require sls ([726df07](https://github.com/saltstack-formulas/exim-formula/commit/726df07))
+* **states:** re-generate Exim aliases DB after update ([6a0aecf](https://github.com/saltstack-formulas/exim-formula/commit/6a0aecf))
+
+
+### Continuous Integration
+
+* **kitchen:** install required packages to bootstrapped `opensuse` [skip ci] ([63a132e](https://github.com/saltstack-formulas/exim-formula/commit/63a132e))
+* **kitchen:** use bootstrapped `opensuse` images until `2019.2.2` [skip ci] ([f1efdc9](https://github.com/saltstack-formulas/exim-formula/commit/f1efdc9))
+* **platform:** add `arch-base-latest` (commented out for now) [skip ci] ([89918b2](https://github.com/saltstack-formulas/exim-formula/commit/89918b2))
+
+
+### Features
+
+* **states:** add exim.mailname and exim.aliases states ([68bb801](https://github.com/saltstack-formulas/exim-formula/commit/68bb801))
+
+
+### Performance Improvements
+
+* **states:** reuse already fetched pillars ([c466c86](https://github.com/saltstack-formulas/exim-formula/commit/c466c86))
+
+
+### Tests
+
+* **inspec:** check that smtp port is opened ([a6418d3](https://github.com/saltstack-formulas/exim-formula/commit/a6418d3))
+
 # [0.3.0](https://github.com/saltstack-formulas/exim-formula/compare/v0.2.1...v0.3.0) (2019-09-25)
 
 
