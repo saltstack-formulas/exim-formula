@@ -8,4 +8,14 @@ control 'Exim configuration' do
     # Custom config
     its('content') { should include "dc_hide_mailname='false'" }
   end
+
+  describe file('/etc/mailname') do
+    # Custom config
+    its('content') { should include 'foo.bar.baz' }
+  end
+
+  describe file('/etc/aliases') do
+    # Custom config
+    its('content') { should include 'root: root@bar.baz' }
+  end
 end

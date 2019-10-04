@@ -6,19 +6,23 @@
 {%- set sls_package_install = tplroot ~ '.package.install' %}
 {%- from tplroot ~ "/map.jinja" import exim with context %}
 
-{% set use_split_config  = salt['pillar.get']('exim:config:use_split_config', 'true') %}
-{% set configtype        = salt['pillar.get']('exim:config:configtype', 'satellite') %}
-{% set hide_mailname     = salt['pillar.get']('exim:config:hide_mailname', 'true') %}
-{% set ue4c_keepcomments = salt['pillar.get']('exim:config:ue4c_keepcomments', 'true') %}
-{% set localdelivery     = salt['pillar.get']('exim:config:localdelivery', 'mail_spool') %}
-{% set local_interfaces  = salt['pillar.get']('exim:config:local_interfaces', '') %}
-{% set minimaldns        = salt['pillar.get']('exim:config:minimaldns', 'false') %}
-{% set other_hostnames   = salt['pillar.get']('exim:config:other_hostnames', '') %}
-{% set readhost          = salt['pillar.get']('exim:config:readhost', '') %}
-{% set relay_domains     = salt['pillar.get']('exim:config:relay_domains', '') %}
-{% set relay_nets        = salt['pillar.get']('exim:config:relay_nets', '') %}
-{% set smarthost         = salt['pillar.get']('exim:config:smarthost', '') %}
-{% set cfilemode         = salt['pillar.get']('exim:config:cfilemode', '644') %}
+{%- set exim_config       = exim.config | default({}) %}
+{%- set use_split_config  = exim_config.use_split_config | default('true') %}
+{%- set configtype        = exim_config.configtype | default('satellite') %}
+{%- set hide_mailname     = exim_config.hide_mailname | default('true') %}
+{%- set ue4c_keepcomments = exim_config.ue4c_keepcomments | default('true') %}
+{%- set localdelivery     = exim_config.localdelivery | default('mail_spool') %}
+{%- set local_interfaces  = exim_config.local_interfaces | default('') %}
+{%- set minimaldns        = exim_config.minimaldns | default('false') %}
+{%- set other_hostnames   = exim_config.other_hostnames | default('') %}
+{%- set readhost          = exim_config.readhost | default('') %}
+{%- set relay_domains     = exim_config.relay_domains | default('') %}
+{%- set relay_nets        = exim_config.relay_nets | default('') %}
+{%- set smarthost         = exim_config.smarthost | default('') %}
+{%- set cfilemode         = exim_config.cfilemode | default('644') %}
+
+include:
+  - {{ sls_package_install }}
 
 {{ exim.config_dir }}/{{ exim.config_file }}:
   file.managed:
@@ -36,13 +40,17 @@
         dc_readhost='{{ readhost }}'
         dc_smarthost='{{ smarthost }}'
         CFILEMODE='{{ cfilemode }}'
+    - require:
+      - sls: {{ sls_package_install }}
 
-{% if salt['pillar.get']('exim:files') %}
-{% for dir in exim.sub_dirs %}
-  {% for file in salt['pillar.get']('exim:files:' + dir, {}) %}
+{%- if salt['pillar.get']('exim:files') %}
+{%- for dir in exim.sub_dirs %}
+  {%- for file in salt['pillar.get']('exim:files:' + dir, {}) %}
 {{ exim.config_dir }}/conf.d/{{ dir }}/{{ file }}:
   file.managed:
     - contents_pillar: exim:files:{{ dir }}:{{ file }}
-  {% endfor %}
-{% endfor %}
-{% endif %}
+    - require:
+      - sls: {{ sls_package_install }}
+  {%- endfor %}
+{%- endfor %}
+{%- endif %}

@@ -14,6 +14,9 @@ exim:
     relay_domains: ''
     relay_nets: ''
     smarthost: ''
+  mailname: foo.bar.baz
+  aliases:
+    root: root@bar.baz
   files:
     main:
       '01_exim4-config_listmacrosdefs': |
