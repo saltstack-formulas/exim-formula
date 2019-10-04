@@ -7,6 +7,7 @@ control 'Exim configuration' do
 
     # Custom config
     its('content') { should include "dc_hide_mailname='false'" }
+    its('content') { should include "dc_use_split_config='false'" }
   end
 
   describe file('/etc/mailname') do
