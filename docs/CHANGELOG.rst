@@ -2,6 +2,21 @@
 Changelog
 =========
 
+`0.5.0 <https://github.com/saltstack-formulas/exim-formula/compare/v0.4.0...v0.5.0>`_ (2019-10-05)
+------------------------------------------------------------------------------------------------------
+
+Code Refactoring
+^^^^^^^^^^^^^^^^
+
+
+* **pillars:** extract default values to pillars (\ `72299cc <https://github.com/saltstack-formulas/exim-formula/commit/72299cc>`_\ )
+
+Features
+^^^^^^^^
+
+
+* **tofs:** add TOFS pattern (\ `7222790 <https://github.com/saltstack-formulas/exim-formula/commit/7222790>`_\ )
+
 `0.4.0 <https://github.com/saltstack-formulas/exim-formula/compare/v0.3.0...v0.4.0>`_ (2019-10-04)
 ------------------------------------------------------------------------------------------------------
 
