@@ -18,11 +18,3 @@ Debian:
   config_file: update-exim4.conf.conf
   mailname_file: /etc/mailname
   virtual_aliases_dir: /etc/exim4/virtual
-  sub_dirs:
-    - main
-    - acl
-    - router
-    - transport
-    - retry
-    - rewrite
-    - auth
