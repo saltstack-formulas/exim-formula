@@ -10,7 +10,6 @@ control 'Exim service' do
     it { should be_listening }
     its('processes') { should include 'exim4' }
     its('protocols') { should include 'tcp' }
-    its('addresses') { should include '0.0.0.0' }
-    its('addresses') { should include '::' }
+    its('addresses') { should include '127.0.0.1' }
   end
 end

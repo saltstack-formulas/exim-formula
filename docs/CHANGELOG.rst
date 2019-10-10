@@ -2,6 +2,16 @@
 Changelog
 =========
 
+`0.6.0 <https://github.com/saltstack-formulas/exim-formula/compare/v0.5.0...v0.6.0>`_ (2019-10-08)
+------------------------------------------------------------------------------------------------------
+
+Features
+^^^^^^^^
+
+
+* **pillar:** accept 'true'/True/true for booleans in pillars (\ `afe3e70 <https://github.com/saltstack-formulas/exim-formula/commit/afe3e70>`_\ )
+* **pillar:** some config values can be treated as lists (\ `481966d <https://github.com/saltstack-formulas/exim-formula/commit/481966d>`_\ )
+
 `0.5.0 <https://github.com/saltstack-formulas/exim-formula/compare/v0.4.0...v0.5.0>`_ (2019-10-05)
 ------------------------------------------------------------------------------------------------------
 
