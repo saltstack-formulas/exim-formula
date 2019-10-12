@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 control 'Exim configuration' do
   title 'should match desired lines'
 
