@@ -19,6 +19,11 @@ control 'Exim configuration' do
     its('content') { should include 'foo.bar.baz' }
   end
 
+  describe file('/etc/exim4/passwd.client') do
+    # Custom config
+    its('content') { should include '*:mymail@example.com:abdc1243' }
+  end
+
   describe file('/etc/aliases') do
     # Custom config
     its('content') { should include 'root: root@bar.baz' }

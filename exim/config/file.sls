@@ -22,15 +22,20 @@ exim/config/install:
       - sls: {{ sls_package_install }}
     - context:
         exim: {{ exim.config | json }}
+    - watch_in:
+      - service: exim/service/running
 
 {%- if salt['pillar.get']('exim:files') %}
 {%- for dir in exim.sub_dirs %}
   {%- for file in salt['pillar.get']('exim:files:' + dir, {}) %}
-{{ exim.config_dir }}/conf.d/{{ dir }}/{{ file }}:
+  {% set config_subdir_path = '/conf.d/' ~ dir ~ '/' if dir != 'base' else '/' %}
+{{ exim.config_dir }}{{ config_subdir_path }}/{{ file }}:
   file.managed:
     - contents_pillar: exim:files:{{ dir }}:{{ file }}
     - require:
       - sls: {{ sls_package_install }}
+    - watch_in:
+      - service: exim/service/running
   {%- endfor %}
 {%- endfor %}
 {%- endif %}
