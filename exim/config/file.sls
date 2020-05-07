@@ -22,8 +22,6 @@ exim/config/install:
       - sls: {{ sls_package_install }}
     - context:
         exim: {{ exim.config | json }}
-    - watch_in:
-      - service: exim/service/running
 
 {%- if salt['pillar.get']('exim:files') %}
 {%- for dir in exim.sub_dirs %}
@@ -34,8 +32,6 @@ exim/config/install:
     - contents_pillar: exim:files:{{ dir }}:{{ file }}
     - require:
       - sls: {{ sls_package_install }}
-    - watch_in:
-      - service: exim/service/running
   {%- endfor %}
 {%- endfor %}
 {%- endif %}

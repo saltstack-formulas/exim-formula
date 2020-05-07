@@ -14,5 +14,5 @@ exim/service/running:
     - name: {{ exim.service }}
     - enable: true
     - reload: true
-    - require:
+    - watch:
       - sls: {{ sls_config_file }}

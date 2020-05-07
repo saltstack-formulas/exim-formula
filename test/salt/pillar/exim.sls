@@ -18,4 +18,3 @@ exim:
       'passwd.client': |
         # <server>:<username>:<user password>
         *:mymail@example.com:abdc1243
-
