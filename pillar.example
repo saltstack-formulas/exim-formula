@@ -20,6 +20,13 @@ exim:
   aliases:
     root: root@bar.baz
   files:
+    # 'base' dir files will be located under the main CONFDIR (/etc/exim4)
+    # this allows you to write files like `/etc/exim4/exim4.conf.localmacros`
+    # or `/etc/exim4/passwd.client`
+    base:
+      'passwd.client': |
+        # <server>:<username>:<user password>
+        *:mymail@example.com:abdc1243
     main:
       '01_exim4-config_listmacrosdefs': |
         exim_path = /usr/sbin/exim4

@@ -13,3 +13,8 @@ exim:
   mailname: foo.bar.baz
   aliases:
     root: root@bar.baz
+  files:
+    base:
+      'passwd.client': |
+        # <server>:<username>:<user password>
+        *:mymail@example.com:abdc1243

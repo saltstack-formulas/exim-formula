@@ -21,6 +21,7 @@ exim:
     smarthost: []
     cfilemode: '644'
   sub_dirs:
+    - base
     - main
     - acl
     - router
