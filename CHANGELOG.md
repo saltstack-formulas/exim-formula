@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.7.1](https://github.com/saltstack-formulas/exim-formula/compare/v0.7.0...v0.7.1) (2020-12-16)
+
+
+### Continuous Integration
+
+* **gitlab-ci:** use GitLab CI as Travis CI replacement ([b91a3b4](https://github.com/saltstack-formulas/exim-formula/commit/b91a3b4cdc3266cf9ed5c748930538a75c473369))
+* **kitchen:** use `saltimages` Docker Hub where available [skip ci] ([5ae076c](https://github.com/saltstack-formulas/exim-formula/commit/5ae076cf00f95c6bc2a751b3a1c2e92b86416380))
+* **pre-commit:** add to formula [skip ci] ([f9b2d64](https://github.com/saltstack-formulas/exim-formula/commit/f9b2d640481b1229a29d22dec280102b27f616c4))
+* **pre-commit:** enable/disable `rstcheck` as relevant [skip ci] ([bbf978c](https://github.com/saltstack-formulas/exim-formula/commit/bbf978cc291053fa0e2a7cde15e4316cd6b76de4))
+* **pre-commit:** finalise `rstcheck` configuration [skip ci] ([ec51349](https://github.com/saltstack-formulas/exim-formula/commit/ec513498a0cc5d245cfa83a91f31a8de173795cc))
+* **travis:** add notifications => zulip [skip ci] ([68b8e29](https://github.com/saltstack-formulas/exim-formula/commit/68b8e29ddd0f0a919aaca9f6a579c1ed4445498d))
+
+
+### Styles
+
+* **libtofs.jinja:** use Black-inspired Jinja formatting [skip ci] ([4ef2119](https://github.com/saltstack-formulas/exim-formula/commit/4ef2119300ed14e6f4d1cefc62c7673ac125e47f))
+
 # [0.7.0](https://github.com/saltstack-formulas/exim-formula/compare/v0.6.1...v0.7.0) (2020-05-08)
 
 
