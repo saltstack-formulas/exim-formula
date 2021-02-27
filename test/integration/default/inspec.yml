@@ -9,3 +9,13 @@ summary: Verify that the exim formula is setup and configured correctly
 supports:
   - platform-name: debian
   - platform-name: ubuntu
+  - platform-name: centos
+  - platform-name: fedora
+  - platform-name: opensuse
+  - platform-name: suse
+  - platform-name: freebsd
+  - platform-name: amazon
+  - platform-name: oracle
+  - platform-name: arch
+  - platform-name: gentoo
+  - platform: windows
