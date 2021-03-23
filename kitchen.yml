@@ -312,6 +312,7 @@ suites:
       state_top:
         base:
           '*':
+            - exim._mapdata
             - exim
       pillars:
         top.sls:
